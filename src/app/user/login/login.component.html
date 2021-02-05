@@ -13,26 +13,27 @@
     </div>
     <div class="right">
       <h2>Returning Customer</h2>
-      <form [formGroup]="loginform" >
+      <form [formGroup]="loginform" (ngSubmit)="login()" >
         <div class="content">
           <p>I am a returning customer</p>
           <b>E-Mail Address:</b><br>
           <input type="text" formControlName="email">
-          <div *ngIf="email.touched && email.errors.required">email is required</div>
+          <div *ngIf="email.touched && email.errors?.required">email is required</div>
+
           <br>
           <br>
           <b>Password:</b><br>
           <input type="password" formControlName="password">
-          <div *ngIf="  password.touched && password.errors.required">
+          <div *ngIf="  password.touched && password.errors?.required">
             Name is required.
           </div>
-          <div *ngIf=" password.touched && password.errors.minlength">
+          <div *ngIf=" password.touched && password.errors?.minlength">
             Name must be at least 6 characters long.
           </div>
           <br>
           <a href="#">Forgotten Password</a><br>
           <br>
-          <input (click)="login()" type="submit" class="button" value="Login">
+          <input  type="submit" class="button" value="Login">
         </div>
       </form>
     </div>
