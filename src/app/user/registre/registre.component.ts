@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { user } from '../../shared/user';
+import { UserService } from '../../shared/services/user.service';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-registre',
@@ -8,10 +11,10 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class RegistreComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private userService:UserService) { }
+user:user;
   ngOnInit(): void {
-    console.log('rrrr')
+    this.user = new user();
   }
   userRegister = new FormGroup({
     nom: new FormControl(''),
@@ -23,7 +26,15 @@ export class RegistreComponent implements OnInit {
   });
 
   signIn(){
-    console.log( this.userRegister.value)
+
+  this.userService.register(this.userRegister.value).subscribe(data =>{
+    swal("Good job!", "Welcome", "success");
+    this.ngOnInit();
+    },
+      err => {
+        swal("verify your email", "this email is used", "warning");
+      }
+);
 
   }
 
