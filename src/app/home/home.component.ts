@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../Product';
-import { ProduitService } from '../services/produit.service';
+import { ProduitService } from '../shared/services/produit.service';
 declare var jQuery : any;
 
 @Component({

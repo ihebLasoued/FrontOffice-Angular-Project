@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { CanLoginGuardService } from './shared/services/can-login-guard.service';
 const routes: Routes = [
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
 
   { path: 'home',  component: HomeComponent },
 
-  { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
+  { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule),canActivate:[CanLoginGuardService] },
 ];
 
 @NgModule({
