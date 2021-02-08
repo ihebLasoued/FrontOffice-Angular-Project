@@ -22,4 +22,8 @@ export class UserService {
     localStorage.write(Config.tokenKey, 'Bearer ' + data.token);
   localStorage.write(Config.adminKey, data.user);
   }*/
+  acheterProduit( idUser:number,idProduct,item:object) {
+    //const headers = this.headers.set('Authorization', this.adminToken);
+    return this.http.post(Config.userUrl + "/acheterProduct/"+idUser+"/"+idProduct,item);
+  }
 }
